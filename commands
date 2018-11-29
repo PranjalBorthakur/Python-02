@@ -1,0 +1,11 @@
+#!/bin/bash
+docker build -t pranjalborthakur/mmp:python03 .
+docker run -itd --name=index03 pranjalborthakur/mmp:python03
+docker logs index03
+docker cp index03:/data/coverage.xml .
+docker cp index03:/data/test_report.xml .
+docker cp index03:/data/pep8.out .
+cat ~/my_password.txt | docker login -u pranjalborthakur --password-stdin
+x=$(cat test_report.xml | sed -e 's/.*failures=\"//;s/\" name.*//')
+if [ $x -eq 0 ]; then docker push pranjalborthakur/mmp:python03 ; fi
+sleep 1m
