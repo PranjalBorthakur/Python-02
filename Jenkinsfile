@@ -2,7 +2,7 @@ def awesomeVersion = 'UNKNOWN'
 
 pipeline {
     agent {
-        label 'jenkins/jenkins'
+        label 'jenkins-slave'
     }
     stages {
         stage('Build') {
